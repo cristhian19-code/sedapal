@@ -21,7 +21,7 @@ const model = useVModel(props)
 
 <template>
   <div class="flex flex-column gap-2 w-full mb-3">
-    <label :for="label">{{ label }}</label>
+    <label class="text-sm" :for="label">{{ label }}</label>
     <InputText :type="type" :id="label" v-model="model" />
 <!--    <small id="username-help">Enter your username to reset your password.</small>-->
   </div>

@@ -1,6 +1,10 @@
 export default [
     {
         path: "menu",
-        component: ()=> import("../../pages/Menu.vue")
+        name: "Menu",
+        component: ()=> import("../../pages/Menu.vue"),
+        meta: {
+            requireAuth: true
+        }
     }
 ]

@@ -1,6 +1,10 @@
 export default [
     {
         path: "",
-        component: ()=> import("../../pages/Home.vue")
+        name: "Home",
+        component: ()=> import("../../pages/Home.vue"),
+        meta: {
+            pageAuth: true
+        }
     }
 ]

@@ -1,16 +1,39 @@
 <script setup>
-import Card from 'primevue/card'
+import { ref } from "vue";
+import { useRouter } from "vue-router";
 
-import BaseInput from "../components/input/BaseInput.vue"
-import baseButton from "../components/button/BaseButton.vue"
+import Card from "primevue/card";
 
-import {useRouter} from "vue-router";
+import BaseInput from "../components/input/BaseInput.vue";
+import baseButton from "../components/button/BaseButton.vue";
+
+import { $axios } from "../config/axios";
 
 const router = useRouter();
+const loading = ref(false);
 
-const goToDashboard = ()=> {
-  router.push("/menu")
-}
+const entity = ref({
+  username: null,
+  contrasenia: null,
+});
+
+const login = async () => {
+  if (!Boolean(entity.value.username) || !Boolean(entity.value.contrasenia)) return;
+
+  loading.value = true;
+  try {
+    const { data } = await $axios.post("/login/", entity.value);
+    console.log(data);
+    await localStorage.setItem("token", JSON.stringify(data.token));
+
+    await router.push({
+      name: "Menu",
+    });
+    loading.value = false;
+  } catch (error) {
+    console.log(error);
+  }
+};
 </script>
 
 <template>
@@ -18,13 +41,12 @@ const goToDashboard = ()=> {
     <template #content>
       <div class="flex flex-column justify-content-end align-items-center">
         <h1 class="text-center">Iniciar Sesión</h1>
+        <!-- {{ entity }} -->
+        <base-input v-model="entity.username" label="Email" />
+        <base-input v-model="entity.contrasenia" label="Contraseña" type="password" />
 
-        <base-input label="Email"/>
-        <base-input label="Contraseña" type="password"/>
-
-        <base-button @click="goToDashboard" label="Ingresar"/>
+        <base-button :loading="loading" @click="login" label="Ingresar" />
       </div>
-
     </template>
   </Card>
 </template>

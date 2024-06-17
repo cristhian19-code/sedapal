@@ -1,44 +1,51 @@
 <script setup>
-import Button from "primevue/button"
+import Button from "primevue/button";
 
 const props = defineProps({
   label: {
     type: String,
-    default: ""
+    default: "",
   },
   severity: {
     type: String,
-    default: null
+    default: null,
   },
   icon: {
     type: String,
-    default:null
+    default: null,
   },
   iconPos: {
     type: String,
-    default: "right"
+    default: "right",
   },
-  outlined:{
+  outlined: {
     type: Boolean,
-    default: false
+    default: false,
   },
   text: {
     type: Boolean,
-    default: false
-  }
-})
+    default: false,
+  },
+});
 
-const emit = defineEmits(['click'])
+const emit = defineEmits(["click"]);
 
-const onClick = ()=> {
-  emit('click')
-}
+const onClick = () => {
+  emit("click");
+};
 </script>
 
 <template>
-  <Button @click="onClick" :label="label" :text="text" :outlined="outlined" :severity="severity" :icon="icon" :iconPos="iconPos" />
+  <Button
+    @click="onClick"
+    :label="label"
+    :text="text"
+    size="small"
+    :outlined="outlined"
+    :severity="severity"
+    :icon="icon"
+    :iconPos="iconPos"
+  />
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>
