@@ -50,6 +50,24 @@ const listMenu = [
         icon: "pi pi-cog",
         name: "ConexionTipo",
         type: "url",
+      },
+      {
+        label: "Direccion Tipo Via",
+        icon: "pi pi-cog",
+        name: "DireccionTipoVia",
+        type: "url",
+      },
+      {
+        label: "Direccion Urbanizacion",
+        icon: "pi pi-cog",
+        name: "DireccionUrbanizacion",
+        type: "url",
+      },
+      {
+        label: "Estado Civil",
+        icon: "pi pi-cog",
+        name: "EstadoCivil",
+        type: "url",
       }
     ],
   },
@@ -88,7 +106,7 @@ const getImage = (image) => {
           <router-link style="text-decoration: none" :to="{ name: node.name }">{{ node.label }}</router-link>
         </template>
       </Tree>
-      <div class="flex-grow-1">
+      <div class="flex-grow-1 max-w-full overflow-x-auto">
         <router-view />
       </div>
     </div>

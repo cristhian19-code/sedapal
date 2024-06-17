@@ -130,9 +130,9 @@ getItems();
           icon="pi pi-sync" />
       </div>
 
-      <div class="card p-3 border-solid border-1 border-gray-200 border-round-md mt-4">
-        <DataTable :loading="loading" paginator v-if="headersComputed.length > 0" :rows="5"
-          :rowsPerPageOptions="[5, 10, 20, 50]" :value="items" tableStyle="min-width: 50rem">
+      <div class="card p-3 border-solid border-1 border-gray-200 border-round-md mt-4 w-full overflow-auto">
+        <DataTable scrollable :loading="loading" paginator v-if="headersComputed.length > 0" :rows="5"
+          :rowsPerPageOptions="[5, 10, 20, 50]" :value="items" tableStyle="min-width: 20rem">
           <Column v-for="header in headersComputed" :field="header.value" :header="header.text">
             <template v-if="header.value === 'actions'" #body="{ data }">
               <tooltip-btn v-if="!hideEdit" @click="openDialogAddEdit(true, data)" icon="pi pi-pencil" color="warning"
