@@ -11,7 +11,8 @@ const headers = [
 ]
 
 const entity = ref({
-  nombre: '',
+  nivel_socioeco: '',
+  nombre_socioeco: '',
 })
 
 const onCreate = () => {
@@ -24,10 +25,11 @@ const onCreate = () => {
 </script>
 
 <template>
-  <base-crud @onCreate="onCreate" id-name="id_nivel_socioeconomico" :entity="entity" title="Nivel Socioeconomico" :headers="headers"
-    entity-name="estado-socioeconomico">
+  <base-crud @onCreate="onCreate" id-name="nivel_socioeco" :entity="entity" title="Nivel Socioeconomico"
+    :headers="headers" entity-name="nivel-socioeconomico">
     <template #form>
-      <base-input v-model="entity.nombre" label="Nivel Socioeconomico" />
+      <base-input v-model="entity.nivel_socioeco" label="Nivel" />
+      <base-input v-model="entity.nombre_socioeco" label="Descripcion" />
     </template>
   </base-crud>
 </template>

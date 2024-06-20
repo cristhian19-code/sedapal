@@ -68,6 +68,30 @@ const listMenu = [
         icon: "pi pi-cog",
         name: "EstadoCivil",
         type: "url",
+      },
+      {
+        label: "Nivel Socioeconomico",
+        icon: "pi pi-cog",
+        name: "NivelSocioeconomico",
+        type: "url",
+      },
+      {
+        label: "Categoria Predio",
+        icon: "pi pi-cog",
+        name: "PredioCategoria",
+        type: "url",
+      },
+      {
+        label: "Revision Estado",
+        icon: "pi pi-cog",
+        name: "RevisionEstado",
+        type: "url",
+      },
+      {
+        label: "Tipo Modificaciones",
+        icon: "pi pi-cog",
+        name: "TipoModificaciones",
+        type: "url",
       }
     ],
   },
