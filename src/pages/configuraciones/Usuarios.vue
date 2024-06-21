@@ -30,10 +30,11 @@ const onEdit = (item) => {
 </script>
 
 <template>
-  <base-crud @onEdit="onEdit" @onCreate="onCreate" id-name="id_usuario" :entity="entity" title="Usuarios" :headers="headers" entity-name="usuarios">
+  <base-crud @onEdit="onEdit" @onCreate="onCreate" id-name="id_usuario" :entity="entity" title="Usuarios"
+    :headers="headers" entity-name="usuarios">
     <template #form>
-      <base-input v-model="entity.username" type="email" label="Username"/>
-      <base-input  v-model="entity.contrasenia" type="password" label="Contraseña"/>
+      <base-input max-length="50" v-model="entity.username" type="email" label="Username" />
+      <base-input max-length="50" v-model="entity.contrasenia" type="password" label="Contraseña" />
     </template>
   </base-crud>
 </template>

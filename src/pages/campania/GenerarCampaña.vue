@@ -8,30 +8,35 @@ import BaseInput from '@/components/input/BaseInput.vue';
 import BaseButton from '@/components/button/BaseButton.vue';
 import ComboEmpleado from '@/components/combo/ComboEmpleado.vue';
 import ComboUrbanizacion from '@/components/combo/ComboUrbanizacion.vue';
+import DataTable from 'primevue/datatable';
+import Column from 'primevue/column';
 
 import Steps from 'primevue/steps';
 import Toast from 'primevue/toast';
 
+import { $moment } from '@/config/moment';
 import { $axios } from '@/config/axios';
 import { useUserStore } from '@/store/user';
 
 const toast = useToast();
 const numInspectores = ref(0);
 const loading = ref(false);
+const actividades = ref([]);
 const step = ref(0);
+const crud = ref(null);
 const userStore = useUserStore();
 
 const entityCampania = ref({
     inspectores_campania: "",
-    fecha_inicio: "",
-    fecha_fin: "",
+    fecha_inicio: $moment().format('YYYY-MM-DD'),
+    fecha_fin: $moment().add(3,'day').format('YYYY-MM-DD'),
     estado: "Pendiente",
     id_empleado: "",
 });
 
 const entityActividad = ref({
     descripcion: "",
-    fecha: "",
+    fecha: $moment().format('YYYY-MM-DD'),
     urbanizacion: "",
     id_campania: "",
     id_usuario: "",
@@ -51,6 +56,32 @@ const steppers = [
         label: 'Asignar Actividades'
     }
 ]
+
+const headerActividad = [
+    { text: 'ID', value: 'id_actividad' },
+    { text: 'Descripcion', value: 'descripcion' },
+    { text: 'Fecha', value: 'fecha' },
+    { text: 'Urbanizacion', value: 'urbanizacion' },
+]
+
+const handleReset = () => {
+    step.value = 0;
+    numInspectores.value = 0;
+    entityCampania.value = {
+        inspectores_campania: "",
+        fecha_inicio: "",
+        fecha_fin: "",
+        estado: "Pendiente",
+        id_empleado: "",
+    };
+    entityActividad.value = {
+        descripcion: "",
+        fecha: "",
+        urbanizacion: "",
+        id_campania: "",
+        id_usuario: "",
+    };
+}
 
 const showError = (message) => {
     toast.add({ severity: 'error', summary: 'Error', detail: message, life: 3000 });
@@ -106,9 +137,10 @@ const onSaveActividad = async () => {
         entityActividad.value = {
             ...entityActividad.value,
             descripcion: "",
-            fecha: "",
+            fecha: $moment().format('YYYY-MM-DD'),
             urbanizacion: "",
         }
+        await initData();
     } catch (error) {
         console.log(error);
         // showError(error.response.data.status);
@@ -117,12 +149,29 @@ const onSaveActividad = async () => {
     }
 }
 
+const initData = async () => {
+    if (!Boolean(entityActividad.value.id_campania)) return actividades.value = [];
+
+    try {
+        const { data } = await $axios.post(`/actividades/listar`, {
+            id_campania: entityActividad.value.id_campania
+        })
+
+        actividades.value = data;
+    } catch (error) {
+
+    }
+}
+
 </script>
 
 <template>
     <Toast />
     <div class="w-full mx-auto my-auto ">
-        <Steps class="my-5" v-model:activeStep="step" :model="steppers" :readonly="false">
+        <base-button severity="warning" class="block mx-auto" :loading="loading" @click="handleReset"
+            label="Resetear Datos" icon="pi pi-sync" />
+
+        <Steps class="my-5" v-model:activeStep="step" :model="steppers">
             <template #item="{ item, active }">
                 <span
                     :class="['inline-flex align-items-center justify-content-center align-items-center border-circle border-primary border-1 h-3rem w-3rem z-1 cursor-pointer', { 'bg-primary': active, 'surface-overlay text-primary': !active }]">
@@ -178,7 +227,15 @@ const onSaveActividad = async () => {
                 </div>
             </div>
             <base-input label="Descripcion" v-model="entityActividad.descripcion" />
-            <base-button class="block mx-auto" :loading="loading" @click="onSaveActividad" label="Guardar" />
+            <base-button class="block mx-auto my-5" :loading="loading" @click="onSaveActividad" label="Guardar" />
+            <DataTable scrollable paginator :value="actividades" :rows="5" :rowsPerPageOptions="[5, 10, 20, 50]">
+                <Column v-for="header in headerActividad" :field="header.value" :header="header.text">
+                </Column>
+
+                <template #empty> No hay data. </template>
+            </DataTable>
+
+
         </div>
     </div>
 </template>

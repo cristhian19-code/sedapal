@@ -118,6 +118,10 @@ const onConfirmDelete = async (item) => {
 }
 
 getItems();
+
+defineExpose({
+  getItems,
+})
 </script>
 
 <template>
@@ -143,7 +147,7 @@ getItems();
             </template>
           </Column>
 
-          <template #empty> No customers found. </template>
+          <template #empty> No hay data. </template>
         </DataTable>
       </div>
     </template>

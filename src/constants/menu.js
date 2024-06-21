@@ -84,12 +84,12 @@ export const listMenu = [
             },
             {
                 label: "Predio",
-                icon: "pi pi-cog",
+                icon: "pi pi-share-alt",
                 name: "Predios",
             },
             {
                 label: "Conexion",
-                icon: "pi pi-cog",
+                icon: "pi pi-link",
                 name: "Conexiones",
             },
         ],
@@ -100,12 +100,12 @@ export const listMenu = [
         items: [
             {
                 label: "Generar Campaña",
-                icon: "pi pi-cog",
+                icon: "pi pi-calendar",
                 name: "GenerarCampania",
             },
             {
                 label: "Lista Campañas",
-                icon: "pi pi-cog",
+                icon: "pi pi-list",
                 name: "Campanias",
             },
         ],
