@@ -100,8 +100,13 @@ export const listMenu = [
         items: [
             {
                 label: "Generar Campaña",
-                icon: "pi pi-user",
+                icon: "pi pi-cog",
                 name: "GenerarCampania",
+            },
+            {
+                label: "Lista Campañas",
+                icon: "pi pi-cog",
+                name: "Campanias",
             },
         ],
     },

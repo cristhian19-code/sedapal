@@ -139,6 +139,7 @@ getItems();
                 label="Editar" />
               <tooltip-btn @click="onConfirmDelete(data)" v-if="!hideDelete" icon="pi pi-trash" color="danger"
                 label="Eliminar" />
+              <slot name="actions" :item="data"></slot>
             </template>
           </Column>
 
