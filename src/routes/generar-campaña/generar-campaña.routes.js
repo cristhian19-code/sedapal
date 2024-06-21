@@ -1,6 +1,7 @@
 export default [
     {
         path: "generar-campana",
-        component: ()=> import("../../pages/GenerarCampaña.vue")
+        name: "GenerarCampania",
+        component: () => import("../../pages/campania/GenerarCampaña.vue")
     }
 ]

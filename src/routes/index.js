@@ -12,6 +12,8 @@ import menuInspector from "./menu-inspector";
 import { useUserStore } from "../store/user"
 import configuraciones from "./configuraciones";
 
+import datosMaestros from "./datos-maestros";
+
 
 const routes = [
     ...auth,
@@ -22,7 +24,10 @@ const routes = [
     ...revisionCronograma,
     ...cronogramaRealizar,
     ...menuInspector,
-    ...configuraciones
+    ...configuraciones,
+    
+    // 
+    ...datosMaestros,
 ]
 
 const router = createRouter({

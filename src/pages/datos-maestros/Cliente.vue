@@ -6,8 +6,7 @@ import BaseInput from '@/components/input/BaseInput.vue';
 import BaseInputNumber from '@/components/input/BaseInputNumber.vue';
 import BaseDateInput from '@/components/input/BaseDateInput.vue';
 import ComboGenero from '@/components/combo/ComboGenero.vue';
-import ComboUsuario from '@/components/combo/ComboUsuario.vue';
-import ComboCargo from '@/components/combo/ComboCargo.vue';
+import ComboEstadoCivil from '@/components/combo/ComboEstadoCivil.vue';
 
 import { $moment } from '@/config/moment';
 
@@ -18,9 +17,9 @@ const headers = [
   { text: 'Apellido Materno', value: 'apellido_mat' },
   { text: 'DNI', value: 'dni' },
   { text: 'Telefono', value: 'telefono' },
-  { text: 'Cargo', value: 'cargo' },
+  { text: 'Estado Civil', value: 'estado_civil' },
   { text: 'Correo Personal', value: 'correo' },
-  { text: 'Fecha Contrato', value: 'fecha_contrato' },
+  { text: 'Fecha Nacimiento', value: 'fecha_nacimiento' },
   { text: 'Genero', value: 'genero' },
 ]
 
@@ -31,12 +30,10 @@ const entity = ref({
   apellido_mat: null,
   dni: null,
   telefono: null,
-
-  cargo: null,
+  estado_civil: null,
   correo: null,
-  fecha_contrato: null,
+  fecha_nacimiento: null,
   genero: null,
-  id_usuario: null,
 })
 
 const onCreate = () => {
@@ -47,12 +44,11 @@ const onCreate = () => {
     apellido_mat: null,
     dni: null,
     telefono: null,
-    cargo: null,
     correo: null,
+    estado_civil: null,
 
-    // fecha_contrato: $moment().format('YYYY-MM-DD'),
+    fecha_nacimiento: $moment().format('YYYY-MM-DD'),
     genero: null,
-    id_usuario: null,
   }
 }
 
@@ -66,24 +62,24 @@ const onEdit = (item) => {
 </script>
 
 <template>
-  <base-crud @onEdit="onEdit" @onCreate="onCreate" id-name="id_usuario" :entity="entity" title="Empleados"
-    width-form="600px" :headers="headers" entity-name="empleados">
+  <base-crud @onEdit="onEdit" @onCreate="onCreate" id-name="id_cliente" :entity="entity" title="Clientes"
+    width-form="600px" :headers="headers" entity-name="clientes">
     <template #form>
       <!-- {{ entity }} -->
       <div class="grid">
         <div class="col-6">
-          <base-input label="Primer Nombre" v-model="entity.nombre_pri" />
+          <base-input max-length="20" label="Primer Nombre" v-model="entity.nombre_pri" />
         </div>
         <div class="col-6">
-          <base-input label="Segundo Nombre" v-model="entity.nombre_seg" />
+          <base-input max-length="20" label="Segundo Nombre" v-model="entity.nombre_seg" />
         </div>
       </div>
       <div class="grid">
         <div class="col-6">
-          <base-input label="Primer Apellido" v-model="entity.apellido_pat" />
+          <base-input max-length="20" label="Primer Apellido" v-model="entity.apellido_pat" />
         </div>
         <div class="col-6">
-          <base-input label="Segundo Apellido" v-model="entity.apellido_mat" />
+          <base-input max-length="20" label="Segundo Apellido" v-model="entity.apellido_mat" />
         </div>
       </div>
       <div class="grid">
@@ -96,15 +92,15 @@ const onEdit = (item) => {
       </div>
       <div class="grid">
         <div class="col-6">
-          <combo-cargo v-model="entity.cargo" />
+          <base-input type="date" v-model="entity.fecha_nacimiento" label="Fecha Nacimiento" />
         </div>
         <div class="col-6">
           <combo-genero v-model="entity.genero" />
-          <!-- <base-date-input v-model="entity.fecha_contrato" label="Fecha Contratación" /> -->
         </div>
       </div>
-      <base-input label="Correo" v-model="entity.correo" type="Email" />
-      <combo-usuario v-model="entity.id_usuario" />
+
+      <combo-estado-civil label="Estado Civil" v-model="entity.estado_civil" type="Email" />
+      <base-input max-length="100" label="Correo" v-model="entity.correo" type="Email" />
     </template>
   </base-crud>
 </template>

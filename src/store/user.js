@@ -9,6 +9,10 @@ export const useUserStore = defineStore('user', {
         setUser(user) {
             this.user = user
         },
+        signOut() {
+            localStorage.clear()
+            this.setUser(null)
+        },
         async getDataByToken(token) {
             if (!token) {
                 localStorage.clear()
