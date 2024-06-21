@@ -23,13 +23,12 @@ const numInspectores = ref(0);
 const loading = ref(false);
 const actividades = ref([]);
 const step = ref(0);
-const crud = ref(null);
 const userStore = useUserStore();
 
 const entityCampania = ref({
     inspectores_campania: "",
     fecha_inicio: $moment().format('YYYY-MM-DD'),
-    fecha_fin: $moment().add(3,'day').format('YYYY-MM-DD'),
+    fecha_fin: $moment().add(3, 'day').format('YYYY-MM-DD'),
     estado: "Pendiente",
     id_empleado: "",
 });
@@ -92,22 +91,20 @@ const showSuccess = (message) => {
 }
 
 const validateInspect = async () => {
-    if (!Boolean(numInspectores.value)) {
-        showError('Digite numero de inspectores');
-    } else {
-        try {
-            loading.value = true;
-            const { data } = await $axios.post(`/inspectores/validate`, {
-                numero: numInspectores.value
-            })
-            showSuccess(data.status)
-            entityCampania.value.inspectores_campania = numInspectores.value;
-            step.value = 1;
-        } catch (error) {
-            showError(error.response.data.status);
-        } finally {
-            loading.value = false;
-        }
+    if (Number(numInspectores.value) < 1) return showError('Numero de inspectores debe ser mayor a 0');
+
+    try {
+        loading.value = true;
+        const { data } = await $axios.post(`/inspectores/validate`, {
+            numero: numInspectores.value
+        })
+        showSuccess(data.status)
+        entityCampania.value.inspectores_campania = numInspectores.value;
+        step.value = 1;
+    } catch (error) {
+        showError(error.response.data.status);
+    } finally {
+        loading.value = false;
     }
 };
 
@@ -226,16 +223,17 @@ const initData = async () => {
                     <combo-urbanizacion v-model="entityActividad.urbanizacion" />
                 </div>
             </div>
+
             <base-input label="Descripcion" v-model="entityActividad.descripcion" />
+
             <base-button class="block mx-auto my-5" :loading="loading" @click="onSaveActividad" label="Guardar" />
             <DataTable scrollable paginator :value="actividades" :rows="5" :rowsPerPageOptions="[5, 10, 20, 50]">
-                <Column v-for="header in headerActividad" :field="header.value" :header="header.text">
+                <Column v-for="header in headerActividad" :field="header.value" :header="header.text"
+                    :key="header.value">
                 </Column>
 
                 <template #empty> No hay data. </template>
             </DataTable>
-
-
         </div>
     </div>
 </template>
