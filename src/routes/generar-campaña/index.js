@@ -1,4 +1,5 @@
 import campañasRoutes from "./campañas.routes.js";
+import cronogramaActividadesRoutes from "./cronograma-actividades.routes.js";
 import generarCampaRoutes from "./generar-campaña.routes.js";
 
 export default [
@@ -7,7 +8,8 @@ export default [
         component: ()=> import("../../layouts/DefaultLayout.vue"),
         children: [
             ...generarCampaRoutes,
-            ...campañasRoutes
+            ...campañasRoutes,
+            ...cronogramaActividadesRoutes
         ]
     }
 ]

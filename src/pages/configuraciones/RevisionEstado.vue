@@ -16,7 +16,7 @@ const entity = ref({
 })
 
 const onCreate = () => {
-  entity.value = {  
+  entity.value = {
     estado: '',
     nombre: '',
   }
@@ -28,8 +28,8 @@ const onCreate = () => {
   <base-crud @onCreate="onCreate" id-name="estado" :entity="entity" title="Revision Estado" :headers="headers"
     entity-name="revision-estado">
     <template #form>
-      <base-input v-model="entity.estado" label="Categoria" />
-      <base-input v-model="entity.nombre" label="nombre_categoria" />
+      <base-input max-length="10" v-model="entity.estado" label="Categoria" />
+      <base-input max-length="50" v-model="entity.nombre" label="nombre_categoria" />
     </template>
   </base-crud>
 </template>

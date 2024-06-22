@@ -28,7 +28,7 @@ const onCreate = () => {
     entity-name="direccion-urbanizacion">
     <template #form>
       <base-input-number v-model="entity.urbanizacion" label="Urbanizacion" />
-      <base-input v-model="entity.nombre_urbanizacion" label="Descripcion" />
+      <base-input max-length="50" v-model="entity.nombre_urbanizacion" label="Descripcion" />
     </template>
   </base-crud>
 </template>

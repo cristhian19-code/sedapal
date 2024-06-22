@@ -27,6 +27,7 @@ const userStore = useUserStore();
 
 const entityCampania = ref({
     inspectores_campania: "",
+    nombre: "",
     fecha_inicio: $moment().format('YYYY-MM-DD'),
     fecha_fin: $moment().add(3, 'day').format('YYYY-MM-DD'),
     estado: "Pendiente",
@@ -70,6 +71,7 @@ const handleReset = () => {
         inspectores_campania: "",
         fecha_inicio: "",
         fecha_fin: "",
+        nombre: "",
         estado: "Pendiente",
         id_empleado: "",
     };
@@ -194,7 +196,7 @@ const initData = async () => {
             <div class="mx-auto" style="width: 600px;">
                 <div class="grid">
                     <div class="col-6">
-                        <base-input v-model="entityCampania.inspectores_campania" disabled type="number"
+                        <base-input v-model.number="entityCampania.inspectores_campania" disabled type="number"
                             label="Nro. de Inspectores" />
                     </div>
                     <div class="col-6">
@@ -210,6 +212,7 @@ const initData = async () => {
                         <base-input label="Fecha Fin" type="date" v-model="entityCampania.fecha_fin" />
                     </div>
                 </div>
+                <base-input label="Nombre Campaña" v-model="entityCampania.nombre" />
             </div>
             <base-button class="block mx-auto" :loading="loading" @click="onSaveCampania" label="Continuar" />
         </div>
@@ -224,7 +227,7 @@ const initData = async () => {
                 </div>
             </div>
 
-            <base-input label="Descripcion" v-model="entityActividad.descripcion" />
+            <base-input max-length="255" label="Descripcion" v-model="entityActividad.descripcion" />
 
             <base-button class="block mx-auto my-5" :loading="loading" @click="onSaveActividad" label="Guardar" />
             <DataTable scrollable paginator :value="actividades" :rows="5" :rowsPerPageOptions="[5, 10, 20, 50]">

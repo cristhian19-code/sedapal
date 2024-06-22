@@ -29,7 +29,7 @@ const onEdit = (item) => {
 <template>
   <base-crud @onEdit="onEdit" @onCreate="onCreate" id-name="id_cargo" :entity="entity" title="Cargos" :headers="headers" entity-name="cargos">
     <template #form>
-      <base-input v-model="entity.nombre" label="Cargo"/>
+      <base-input max-length="50" v-model="entity.nombre" label="Cargo"/>
     </template>
   </base-crud>
 </template>

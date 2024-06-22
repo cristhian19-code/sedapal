@@ -25,11 +25,11 @@ const onCreate = () => {
 </script>
 
 <template>
-  <base-crud @onCreate="onCreate" id-name="categoria" :entity="entity" title="Predio Categoria"
-    :headers="headers" entity-name="predio-categoria">
+  <base-crud @onCreate="onCreate" id-name="categoria" :entity="entity" title="Predio Categoria" :headers="headers"
+    entity-name="predio-categoria">
     <template #form>
-      <base-input v-model="entity.categoria" label="Categoria" />
-      <base-input v-model="entity.nombre_categoria" label="nombre_categoria" />
+      <base-input max-length="2" v-model="entity.categoria" label="Categoria" />
+      <base-input max-length="50" v-model="entity.nombre_categoria" label="nombre_categoria" />
     </template>
   </base-crud>
 </template>

@@ -27,8 +27,8 @@ const onCreate = () => {
   <base-crud @onCreate="onCreate" id-name="tipo" :entity="entity" title="Direccion Tipo Via" :headers="headers"
     entity-name="direccion-tipo-via">
     <template #form>
-      <base-input v-model="entity.tipo_via" label="Tipo Via" />
-      <base-input v-model="entity.nombre_tipo_via" label="Descripcion" />
+      <base-input max-length="10" v-model="entity.tipo_via" label="Tipo Via" />
+      <base-input max-length="50" v-model="entity.nombre_tipo_via" label="Descripcion" />
     </template>
   </base-crud>
 </template>

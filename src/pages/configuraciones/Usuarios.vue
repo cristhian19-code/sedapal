@@ -34,7 +34,7 @@ const onEdit = (item) => {
     :headers="headers" entity-name="usuarios">
     <template #form>
       <base-input max-length="50" v-model="entity.username" type="email" label="Username" />
-      <base-input max-length="50" v-model="entity.contrasenia" type="password" label="Contraseña" />
+      <base-input max-length="20" v-model="entity.contrasenia" type="password" label="Contraseña" />
     </template>
   </base-crud>
 </template>

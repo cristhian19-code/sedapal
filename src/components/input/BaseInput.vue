@@ -25,7 +25,6 @@ const props = defineProps({
 })
 
 const onKeypress = (e) => {
-  console.log(model.value);
   if (Boolean(props.maxLength)) {
     model.value = model.value.length > Number(props.maxLength) ? model.value.substring(0, props.maxLength) : model.value;
   };

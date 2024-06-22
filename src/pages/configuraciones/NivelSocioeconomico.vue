@@ -28,8 +28,8 @@ const onCreate = () => {
   <base-crud @onCreate="onCreate" id-name="nivel_socioeco" :entity="entity" title="Nivel Socioeconomico"
     :headers="headers" entity-name="nivel-socioeconomico">
     <template #form>
-      <base-input v-model="entity.nivel_socioeco" label="Nivel" />
-      <base-input v-model="entity.nombre_socioeco" label="Descripcion" />
+      <base-input max-length="2" v-model="entity.nivel_socioeco" label="Nivel" />
+      <base-input max-length="50" v-model="entity.nombre_socioeco" label="Descripcion" />
     </template>
   </base-crud>
 </template>

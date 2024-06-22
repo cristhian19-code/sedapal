@@ -26,8 +26,8 @@ const onCreate = () => {
   <base-crud @onCreate="onCreate" id-name="estado" :entity="entity" title="Conexion Estado" :headers="headers"
     entity-name="conexion-estado">
     <template #form>
-      <base-input v-model="entity.estado" label="Estado" />
-      <base-input v-model="entity.nombre_estado" label="Descripcion" />
+      <base-input max-length="10" v-model="entity.estado" label="Estado" />
+      <base-input max-length="50" v-model="entity.nombre_estado" label="Descripcion" />
     </template>
   </base-crud>
 </template>

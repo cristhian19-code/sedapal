@@ -107,6 +107,10 @@ export const listMenu = [
                 label: "Lista Campañas",
                 icon: "pi pi-list",
                 name: "Campanias",
+            },{
+                label: "Cronograma de Actividades",
+                icon: "pi pi-calendar-clock",
+                name: "CronogramaActividades",
             },
         ],
     },

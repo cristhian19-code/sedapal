@@ -34,7 +34,7 @@ const showSuccess = (message) => {
 const headers = [
 
   { text: 'ID', value: 'id_campania' },
-  // { text: 'Empleado', value: 'id_empleado' },
+  { text: 'Nombre Campaña', value: 'nombre' },
   { text: 'Estado', value: 'estado' },
   { text: 'Fecha Inicio', value: 'fecha_inicio' },
   { text: 'Fecha Fin', value: 'fecha_fin' },

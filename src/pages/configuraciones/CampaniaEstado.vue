@@ -24,7 +24,7 @@ const onCreate = () => {
   <base-crud @onCreate="onCreate" id-name="id_campania_estado" :entity="entity" title="Campaña Estado"
     :headers="headers" entity-name="campania-estado">
     <template #form>
-      <base-input v-model="entity.nombre" label="Estado" />
+      <base-input max-length="10" v-model="entity.nombre" label="Estado" />
     </template>
   </base-crud>
 </template>

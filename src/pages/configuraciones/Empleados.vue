@@ -72,18 +72,18 @@ const onEdit = (item) => {
       <!-- {{ entity }} -->
       <div class="grid">
         <div class="col-6">
-          <base-input label="Primer Nombre" v-model="entity.nombre_pri" />
+          <base-input max-length="50" label="Primer Nombre" v-model="entity.nombre_pri" />
         </div>
         <div class="col-6">
-          <base-input label="Segundo Nombre" v-model="entity.nombre_seg" />
+          <base-input max-length="50" label="Segundo Nombre" v-model="entity.nombre_seg" />
         </div>
       </div>
       <div class="grid">
         <div class="col-6">
-          <base-input label="Primer Apellido" v-model="entity.apellido_pat" />
+          <base-input max-length="50" label="Primer Apellido" v-model="entity.apellido_pat" />
         </div>
         <div class="col-6">
-          <base-input label="Segundo Apellido" v-model="entity.apellido_mat" />
+          <base-input max-length="50" label="Segundo Apellido" v-model="entity.apellido_mat" />
         </div>
       </div>
       <div class="grid">
@@ -103,7 +103,7 @@ const onEdit = (item) => {
           <!-- <base-date-input v-model="entity.fecha_contrato" label="Fecha Contratación" /> -->
         </div>
       </div>
-      <base-input label="Correo" v-model="entity.correo" type="Email" />
+      <base-input max-length="100" label="Correo" v-model="entity.correo" type="Email" />
       <combo-usuario v-model="entity.id_usuario" />
     </template>
   </base-crud>
